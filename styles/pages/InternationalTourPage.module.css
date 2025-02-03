@@ -1,0 +1,203 @@
+/* Ana Container */
+.homeContainer {
+  margin-top: 0;
+  padding: 0 2rem;
+}
+
+/* Banner Bölümü */
+.bannerContainer {
+  position: relative;
+  margin-top: 70px;
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 62, 80, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bannerTitle {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: auto;
+}
+
+/* Bölgeler Başlığı */
+.regionsTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  margin-top: 2rem;
+}
+
+/* Grid Container */
+.gridContainer {
+  margin-bottom: 2rem;
+}
+
+/* Bölge Kartı */
+.regionCard {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.regionCard:hover {
+  transform: scale(1.05);
+}
+
+.regionCardBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.regionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 62, 80, 0.5);
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.regionName {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Component Bazlı Stiller */
+.componentLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 2rem auto;
+}
+
+.componentError {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* No Results Message */
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.noResultsTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.noResultsText {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #1976d2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homeContainer {
+    padding: 0 1rem;
+  }
+
+  .bannerTitle {
+    font-size: 2.5rem;
+  }
+
+  .noResults {
+    min-height: 150px;
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+  
+  .noResultsTitle {
+    font-size: 1.25rem;
+  }
+  
+  .noResultsText {
+    font-size: 0.875rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerTitle {
+    font-size: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}

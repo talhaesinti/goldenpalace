@@ -1,0 +1,68 @@
+.sliderContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 60vh;
+  background-color: #f0f0f0;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.sliderImage {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.loaded {
+  opacity: 1;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 1024px) {
+  .sliderContainer,
+  .sliderImage {
+    height: 45vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .sliderContainer,
+  .sliderImage {
+    height: 45vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .sliderContainer,
+  .sliderImage {
+    height: 40vh;
+  }
+}

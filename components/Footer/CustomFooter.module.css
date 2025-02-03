@@ -1,0 +1,173 @@
+/* CustomFooter.module.css */
+
+/* Temel Footer Stili */
+.customFooter {
+  background-color: #333; /* Koyu arka plan rengi */
+  color: #f5f5f5; /* Yazı rengi */
+  padding: 40px 0; /* İç boşluk */
+  width: 100%; /* Tam genişlik */
+}
+
+/* Footer İçerik Düzeni */
+.footerContent {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 0;
+  width: 100%; /* Tam genişlik */
+  padding: 0 20px;
+}
+
+/* Footer Bölüm Stili */
+.footerSection {
+  flex: 1;
+  margin: 30px 15px;
+  padding: 0 15px;
+  min-width: 180px;
+}
+
+/* Sağda çizgi olması */
+.rightCizgi {
+  border-right: 2px solid #444; /* Sağ çizgi */
+}
+
+/* İlk bölümde sol çizgi olmasın */
+.footerSection:first-child {
+  border-left: none;
+}
+
+/* Başlıklar */
+.footerSection h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left; /* Başlıkların sola yaslanması */
+}
+
+/* Paragraflar ve Linkler */
+.footerSection p,
+.footerSection a {
+  line-height: 1.8;
+  font-size: 16px;
+  text-align: left; /* Yazı ve linklerin sola yaslanması */
+}
+
+/* Liste içinde linkler */
+.footerSection ul {
+  padding-left: 0; /* Liste boşluğunu sıfırla */
+  list-style-position: inside; /* Noktaları içe al */
+  text-align: left; /* Liste elemanlarını sola yasla */
+}
+
+/* Linklerin Varsayılan ve Hover Durumu */
+.footerSection a {
+  text-decoration: none;
+  color: #f5f5f5;
+  transition: color 0.3s;
+}
+
+.footerSection a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Footer Alt Bilgi */
+.footerBottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+/* Sosyal Medya İkonları */
+.socialIcons {
+  display: flex;
+  justify-content: flex-start; /* İkonlar sola dayalı */
+  flex-wrap: wrap;
+}
+
+.socialIcons a {
+  overflow: hidden;
+  border-radius: 60%;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+
+.socialIcons img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+/* Mobil Cihazlar için Responsive Düzenlemeler */
+/* Mobil Cihazlar için Responsive Düzenlemeler */
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+  }
+
+  .footerSection {
+    width: 100%;
+    text-align: center; /* Tüm içerikleri ortala */
+    padding-left: 0;
+  }
+
+  .footerSection h3 {
+    text-align: center; /* Başlıkları ortala */
+    margin-bottom: 20px;
+  }
+
+  .footerSection p {
+    text-align: center; /* Paragrafları ortala */
+  }
+
+  .footerSection ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center; /* Listeyi ortala */
+  }
+
+  .footerSection ul li {
+    text-align: center; /* Liste elemanlarını ortala */
+    margin-bottom: 10px;
+  }
+
+  .socialIcons {
+    justify-content: center; /* İkonları ortala */
+  }
+
+  .socialIcons a {
+    margin-right: 10px;
+  }
+
+  .socialIcons img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rightCizgi {
+    border-right: none; /* Mobilde sağ çizgiyi kaldır */
+  }
+}
+
+
+/* Orta Boyutlu Ekranlar için Responsive Düzenlemeler */
+@media (min-width: 768px) and (max-width: 1350px) {
+  .footerSection {
+    flex: 1 1 200px;
+  }
+
+  .footerSection h3 {
+    font-size: 18px;
+  }
+
+  .socialIcons a {
+    margin-right: 10px;
+  }
+
+  .socialIcons img {
+    width: 40px;
+    height: 40px;
+  }
+}

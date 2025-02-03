@@ -1,0 +1,357 @@
+.homeContainer {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+/* Banner Container */
+.bannerContainer {
+  position: relative;
+  margin-top: 70px; /* Navbar'ın yüksekliği */
+}
+
+/* İçerik container'ı */
+
+
+/* Mobil cihazlar için */
+@media (max-width: 600px) {
+  
+  .homeContainer {
+    padding: 0 0.5rem; /* Mobilde daha dar padding */
+  }
+
+  /* Başlıkların margin değerlerini azaltalım */
+  .highlightedToursTitle,
+  .regionsTitle {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Tour card grid padding */
+  .gridContainer {
+    margin-bottom: 1rem;
+  }
+
+  .gridItem {
+    padding: 0.5rem; /* Kartların kenar boşluğunu azaltalım */
+  }
+}
+
+/* Diğer stiller */
+.gridContainer {
+  margin-bottom: 2rem;
+}
+
+.gridItem {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-slider {
+  margin-bottom: 2rem;
+}
+
+.slick-dots li button:before {
+  font-size: 0.75rem;
+  color: #3498db;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #2c3e50;
+}
+
+.highlightedToursTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  margin-top: 0.625rem;
+}
+
+.regionContainer {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.regionGridWrapper {
+  width: 100%;
+  padding: 0 1rem; /* Kartların kenara değmemesi için padding */
+}
+
+.regionCard {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 en-boy oranı */
+  overflow: hidden;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  transform: translateZ(0); /* GPU hızlandırma */
+  will-change: transform; /* Transform optimizasyonu */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.regionCard:hover {
+  transform: scale(1.05);
+}
+
+.regionCardBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(0); /* GPU hızlandırma */
+  backface-visibility: hidden; /* Render optimizasyonu */
+}
+
+.regionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.regionName {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.regionsTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.75rem;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  margin-top: 4rem;
+}
+
+/* Tours Section */
+.toursSection {
+  padding: 1rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #1976d2;
+}
+
+/* Tours Grid */
+.toursGrid {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 1200px) {
+  .toursSection {
+    padding: 1.5rem 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .toursSection {
+    padding: 1rem 0.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .toursGrid {
+    gap: 1.5rem;
+  }
+
+  .mobileSliderContainer {
+    margin-bottom: 2.5rem;
+  }
+
+  .regionContainer {
+    margin: 3rem auto;
+  }
+  
+  .regionGridWrapper {
+    padding: 0 0.5rem; /* Mobilde daha az padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .toursSection {
+    padding: 1rem 0.25rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobileSliderContainer {
+    margin-bottom: 2rem;
+  }
+
+  .regionContainer {
+    margin: 2rem auto;
+  }
+}
+
+/* Tour Card Wrapper */
+.tourCardWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Mobile Slider Container */
+.mobileSliderContainer {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Slider içindeki kartlar arası boşluk */
+.mobileSliderContainer :global(.slick-slide) {
+  padding: 0 10px;
+}
+
+/* Slider liste container'ı için negatif margin düzeltmesi */
+.mobileSliderContainer :global(.slick-list) {
+  margin: 0 -10px;
+}
+
+/* Slider Dots */
+.mobileSliderContainer :global(.slick-dots) {
+  bottom: -35px;
+}
+
+.mobileSliderContainer :global(.slick-dots li button:before) {
+  font-size: 8px;
+  color: #1976d2;
+}
+
+.mobileSliderContainer :global(.slick-dots li.slick-active button:before) {
+  color: #1976d2;
+}
+
+
+/* -- LOADING & ERROR -- */
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;     /* Yine banner altı bölümü kapsayacak kadar yükseklik */
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  background-color: #fff; /* İsteğe bağlı */
+  border-radius: 8px;
+}
+
+.retryButton {
+  padding: 0.75rem 1.5rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.retryButton:hover {
+  background-color: #1565c0;
+}
+
+/* Komponent bazlı loading ve error stilleri */
+.componentLoading,
+.componentError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.componentError {
+  padding: 1rem;
+}
+
+/* No Results */
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.noResultsTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.noResultsText {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+

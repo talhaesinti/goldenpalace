@@ -9,14 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.0",
+    "@mui/material": "^6.1.0",
+    "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
+    "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.11"
+    "react-icons": "^5.3.0",
+    "react-simple-image-slider": "^2.4.1",
+    "react-slick": "^0.30.2",
+    "sass": "^1.79.4",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
-    "eslint-config-next": "14.2.11"
+    "eslint-config-next": "14.2.11",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
   }
 }

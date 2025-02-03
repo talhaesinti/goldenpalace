@@ -1,0 +1,86 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* Temel body stili */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Başlıklar için stil */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+}
+
+/* Bağlantı (Link) stili */
+a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Sayfa içerik düzeni */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* İçerik alanı */
+.pageContent {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* Footer düzeni */
+footer {
+  background-color: #2c3e50;
+  color: #ffffff;
+  text-align: center;
+}
+
+footer a {
+  color: #ffffff;
+}
+
+footer a:hover {
+  color: #3498db;
+}
+
+/* Responsive düzenleme */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .pageContent {
+    padding: 15px;
+    margin: 15px 0;
+  }
+}

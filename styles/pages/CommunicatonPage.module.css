@@ -1,0 +1,135 @@
+.internationalTourContainer {
+    margin-top: 0px;
+  }
+  
+  .bannerContainer {
+    position: relative;
+    margin-top: 70px; /* Navbar'ın yüksekliği */
+  }
+  
+  .bannerOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 62, 80, 0.5); /* Opaklık ve renk */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bannerTitle {
+    color: #fff;
+    font-size: 3rem; /* Varsayılan yazı boyutu */
+    font-weight: bold;
+    text-align: center;
+    pointer-events: auto; /* Yazının fare olaylarını almasını sağlar */
+  }
+  
+  /* Ekran genişliği 768px'den küçük olduğunda (tablet ve altı) */
+  @media (max-width: 768px) {
+    .bannerTitle {
+      font-size: 2.5rem;
+    }
+  }
+  
+  /* Ekran genişliği 480px'den küçük olduğunda (mobil) */
+  @media (max-width: 480px) {
+    .bannerTitle {
+      font-size: 2rem;
+    }
+  }
+  
+  .gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    width: calc(50% - 40px); /* Kartları iki sütun yapacak şekilde ayarlandı */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card h3 {
+    font-weight: bold; /* Başlığı kalın yapar */
+    color: #000; /* Siyah renkle görünmesini sağlar */
+    font-size: 1.5rem; /* Daha büyük ve dikkat çekici yapar */
+    margin-bottom: 10px; /* Alt boşluk ekler */
+}
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .socialIcons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .socialIcons img {
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+  }
+  
+  .socialIcons img:hover {
+    transform: scale(1.1);
+  }
+  
+  .map {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 100%; /* Haritanın bulunduğu satırı tam genişlikte kaplaması sağlandı */
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+  }
+  
+  .map iframe {
+    border-radius: 10px;
+    width: 100%;
+    height: 400px;
+    border: none;
+  }
+  
+  .mail a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .gridContainer {
+      flex-direction: column; /* Mobilde kartlar dikey sıralansın */
+      padding: 0 16px;
+      align-items: center; /* Kartların dikey olarak ortalanmasını sağlar */
+      justify-content: center; /* Kartların yatay olarak ortalanmasını sağlar */
+      margin-top: 16px;
+    }
+  
+    .card {
+      width: 100%; /* Mobilde kartlar tam genişlikte olacak */
+      margin-left: auto;
+      margin-right: auto; /* Kartların tam ortalanmasını sağlar */
+      
+    }
+  
+    .map iframe {
+      height: 300px; /* Harita yüksekliği mobilde küçültüldü */
+    }
+  }
+  

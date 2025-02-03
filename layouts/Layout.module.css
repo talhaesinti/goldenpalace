@@ -1,0 +1,36 @@
+/* layouts/Layout.module.css */
+
+/* Header stili */
+.header {
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Hafif gölge efekti */
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+/* Container stili (Genişlik ve Padding düzenlendi) */
+.container {
+  width: 100%; /* Sayfanın tamamını kapla */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Sayfa minimum yüksekliği */
+}
+
+/* PageContent (İçeriğin düzeni) */
+.pageContent {
+  flex-grow: 1;
+  background: #ffffff; /* Beyaz arka plan */
+  border-radius: 0; /* Köşeleri yuvarlatmayı kaldır */
+  box-shadow: none; /* Gölgeyi kaldır */
+  margin: 0; /* Üst ve alt boşluğu kaldır */
+}
+
+/* Footer stili */
+.footer {
+  width: 100%; /* Tam genişlik */
+  text-align: center;
+  background-color: #2c3e50; /* Footer arka plan */
+  color: #ffffff;
+  margin-top: auto; /* İçeriğin altına yaslanmasını sağlar */
+  position: relative; /* Sayfa sonunda sabitlenmesi için */
+}
