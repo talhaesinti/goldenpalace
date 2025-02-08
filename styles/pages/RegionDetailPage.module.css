@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 .bannerTitle {
@@ -29,6 +30,7 @@
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
+  pointer-events: auto;
 }
 
 /* Tours Section */
@@ -37,6 +39,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #1976d2;
 }
 
 /* Filter Section */
@@ -70,25 +92,40 @@
   justify-content: center;
 }
 
-/* Component States */
-.componentLoading {
+/* Error Container */
+.errorContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 8px;
-  margin: 2rem auto;
+  min-height: 400px;
+  padding: 2rem;
 }
 
-.componentError {
-  width: 100%;
+.errorContent {
   max-width: 600px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
+.errorContent .contentBox {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.errorContent .sectionTitle {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* No Results */
 .noResults {
   display: flex;
   flex-direction: column;
@@ -145,10 +182,19 @@
   color: #1976d2;
 }
 
+.mobileSliderContainer {
+  margin-bottom: 2.5rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .toursSection {
     padding: 3rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
   }
 
   .bannerTitle {
@@ -161,8 +207,13 @@
     padding: 0 1rem;
   }
 
-  .bannerTitle {
-    font-size: 2.5rem;
+  .toursSection {
+    padding: 2rem 0.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 
   .filterContainer {
@@ -170,12 +221,12 @@
     margin-top: 2rem;
   }
 
-  .mobileFilterBox {
-    padding: 1rem;
+  .bannerTitle {
+    font-size: 2.25rem;
   }
 
-  .mobileSliderContainer {
-    margin-bottom: 2.5rem;
+  .mobileFilterBox {
+    padding: 1rem;
   }
 
   .noResults {
@@ -191,6 +242,19 @@
   .noResultsText {
     font-size: 0.875rem;
   }
+
+  .errorContainer {
+    padding: 1rem;
+    min-height: 300px;
+  }
+
+  .errorContent {
+    padding: 1rem;
+  }
+
+  .errorContent .contentBox {
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -198,15 +262,16 @@
     padding: 1.5rem 0.25rem;
   }
 
-  .bannerTitle {
+  .sectionTitle {
     font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bannerTitle {
+    font-size: 2rem;
   }
 
   .filterContainer {
     padding: 0 1rem;
-  }
-
-  .mobileSliderContainer {
-    margin-bottom: 2rem;
   }
 }

@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import CustomSlider from "../../components/Slider/Slider"; // CustomSlider bileşenini dahil edin
-import { Grid, Typography, Container, Box } from "@mui/material";
+import { Grid, Container, Box } from "@mui/material";
 import bannersAPI from "../api/bannersAPI";
 import styles from "../../styles/pages/CommunicatonPage.module.css"; // Sayfa bazlı stil dosyasını dahil edin
 import { formatTitle } from "@/utils/formatters";
+import Image from 'next/image'
 
 const HomePage = () => {
   const [banners, setBanners] = useState([]);
@@ -20,7 +21,7 @@ const HomePage = () => {
     const fetchBanners = async () => {
       try {
         const response = await bannersAPI.getBanners({
-          type: "home",
+          type: "contact",
           is_active: "true",
         }); // Ana sayfa bannerlarını al
         setBanners(response.data);
@@ -46,41 +47,41 @@ const HomePage = () => {
       <div className={styles.bannerContainer}>
         <CustomSlider banners={banners} />
         <div className={styles.bannerOverlay}>
-          <Typography className={styles.bannerTitle}>
+          <h1 className={styles.bannerTitle}>
             {formatTitle("İletişim")}
-          </Typography>
+          </h1>
         </div>
       </div>
 
       {/* İletişim kartları bölümü */}
       <Container maxWidth="xl" className={styles.gridContainer}>
         <div className={styles.card}>
-          <h3 style={{ fontWeight: "bold" }}>
+          <h3 className={styles.cardTitle}>
             {formatTitle("Adresimiz")}
           </h3>
-          <p>
-            {formatTitle("Elmalikent Mah. Elmalikent Cad. No:4 B Blok Kat:3 34764 Ümraniye / İstanbul")}
+          <p className={styles.cardText}>
+            {formatTitle("Aziz Mahmud Hüdayi Mahallesi, Tepsi Fırını Sokağı No: 13/18 Çakmak İş Hanı, Üsküdar/İstanbul")}
           </p>
         </div>
 
         <div className={styles.card}>
-          <h3 style={{ fontWeight: "bold" }}>
+          <h3 className={styles.cardTitle}>
             {formatTitle("Telefon")}
           </h3>
-          <p>+90 216 474 08 60 / 2910 - 2918</p>
+          <p className={styles.cardText}>+90 506 046 12 12</p>
         </div>
 
         <div className={styles.card}>
-          <h3 style={{ fontWeight: "bold" }}>
+          <h3 className={styles.cardTitle}>
             {formatTitle("E-posta")}
           </h3>
-          <p className={styles.mail}>
-            <a href="mailto:info@kuramer.org">info@kuramer.org</a>
+          <p className={styles.cardText}>
+            <a href="mailto:goldencastle.tr@gmail.com">goldencastle.tr@gmail.com</a>
           </p>
         </div>
 
         <div className={styles.card}>
-          <h3 style={{ fontWeight: "bold" }}>
+          <h3 className={styles.cardTitle}>
             {formatTitle("Sosyal Medya")}
           </h3>
           <div className={styles.socialIcons}>
@@ -89,7 +90,12 @@ const HomePage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/instagram.png" alt="Instagram" />
+              <Image 
+                src="/instagram.png"
+                alt="Instagram"
+                width={50}
+                height={50}
+              />
             </a>
           </div>
         </div>
@@ -97,12 +103,12 @@ const HomePage = () => {
 
       {/* Harita bölümü */}
       <div className={styles.map}>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96311.2619001974!2d28.946335297265623!3d41.0312297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7fb3558c6d1%3A0xd65734d1cb19db8c!2sKURAMER!5e0!3m2!1str!2str!4v1707150169725!5m2!1str!2str"
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188.13313833261535!2d29.014953663605162!3d41.022407063154944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7c6846e0809%3A0x4d1232cfedd142d8!2sGolden%20Castle%20Travel!5e0!3m2!1str!2str!4v1738620202394!5m2!1str!2str"
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
       </div>
     </div>
   );

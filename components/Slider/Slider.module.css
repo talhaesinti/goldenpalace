@@ -15,9 +15,15 @@
   backface-visibility: hidden;
 }
 
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+}
+
 .placeholder {
   width: 100%;
-  height: 100%;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,16 +31,12 @@
   color: #666;
   font-size: 1.2rem;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: 1;
 }
 
 .sliderImage {
-  width: 100%;
-  height: 60vh;
-  object-fit: cover;
-  object-position: center center;
   opacity: 0;
   transition: opacity 0.3s ease;
   transform: translateZ(0);
@@ -48,21 +50,21 @@
 /* Responsive düzenlemeler */
 @media (max-width: 1024px) {
   .sliderContainer,
-  .sliderImage {
+  .imageWrapper {
     height: 45vh;
   }
 }
 
 @media (max-width: 768px) {
   .sliderContainer,
-  .sliderImage {
+  .imageWrapper {
     height: 45vh;
   }
 }
 
 @media (max-width: 480px) {
   .sliderContainer,
-  .sliderImage {
+  .imageWrapper {
     height: 40vh;
   }
 }

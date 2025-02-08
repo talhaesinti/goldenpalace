@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, Button, CardActions, Box } from '@mui/material';
+import { Card, CardContent, Typography, Button, CardActions, Box } from '@mui/material';
 import FlightIcon from '@mui/icons-material/Flight';
 import CurrencyLiraIcon from '@mui/icons-material/CurrencyLira';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { formatTitle, formatPrice } from '@/utils/formatters';
+import Image from 'next/image';
 
 const TourCard = ({ tour }) => {
   const { thumbnail, name, price, start_date, end_date, airline } = tour;
@@ -28,17 +29,19 @@ const TourCard = ({ tour }) => {
         },
       }}
     >
-      <CardMedia
-        component="img"
-        height="180"
-        image={thumbnail}
-        alt={name}
-        sx={{
-          objectFit: 'cover',
-          borderTopLeftRadius: '12px',
-          borderTopRightRadius: '12px',
-        }}
-      />
+      <div style={{ position: 'relative', width: '100%', height: '180px' }}>
+        <Image
+          src={thumbnail || '/placeholder-tour.jpg'}
+          alt={name}
+          fill
+          style={{
+            objectFit: 'cover',
+            borderTopLeftRadius: '12px',
+            borderTopRightRadius: '12px',
+          }}
+          sizes="(max-width: 320px) 100vw, 320px"
+        />
+      </div>
 
       <CardContent sx={{ p: 2, flex: 1 }}>
         <Typography

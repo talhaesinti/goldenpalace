@@ -556,46 +556,36 @@
 }
 
 .imageCard:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
-.imageCard img {
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-.imageCaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  padding: 0.5rem;
-  text-align: center;
+.cardImage {
+  transition: transform 0.3s ease;
 }
 
-/* Modal Stilleri */
+/* Modal için performans iyileştirmesi */
 .imageModal {
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(5px);
 }
+
+/* Modal Stilleri */
 
 .modalContent {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
-  background: white;
-  border-radius: 8px;
-  outline: none;
-}
-
-.modalImage {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
+  background-color: transparent;
 }
 
 .closeButton {
@@ -606,16 +596,13 @@
   z-index: 1;
 }
 
-.modalCaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 1rem;
-  text-align: center;
+.modalImage {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
 }
+
 
 /* Responsive Tasarım */
 @media (max-width: 1024px) {
@@ -664,12 +651,33 @@
 
 .errorContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.errorContent {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.errorContent .contentBox {
+  padding: 2rem;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  padding: 2rem;
-  text-align: center;
+  gap: 1.5rem;
+}
+
+.errorContent .sectionTitle {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 /* Loading ve Error container'lar için responsive düzenlemeler */
@@ -678,29 +686,29 @@
   .errorContainer {
     padding: 1rem;
   }
+
+  .errorContainer {
+    padding: 1rem;
+    min-height: 300px;
+  }
+
+  .errorContent {
+    padding: 1rem;
+  }
+
+  .errorContent .contentBox {
+    padding: 1rem;
+  }
 }
 
-/* Modal için performans iyileştirmesi */
-.imageModal {
+.noResults {
   display: flex;
-  align-items: center;
   justify-content: center;
-  backdrop-filter: blur(5px);
-}
-
-.modalContent {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  background: white;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+  background-color: #f5f5f5;
   border-radius: 8px;
-  outline: none;
-  overflow: hidden;
-}
-
-.modalImage {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-  display: block;
+  padding: 1rem;
+  margin: 1rem 0;
 }

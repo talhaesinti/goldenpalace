@@ -1,10 +1,17 @@
-/* Banner Container */
+/* Layout */
+.homeContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Banner Section */
 .bannerContainer {
   position: relative;
   margin-top: 70px;
 }
 
-/* Banner Overlay */
 .bannerOverlay {
   position: absolute;
   top: 0;
@@ -15,25 +22,78 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
-/* Banner Title */
 .bannerTitle {
   color: #fff;
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
+  pointer-events: auto;
 }
 
-/* Ana Container */
-.homeContainer {
+/* Tours Section */
+.toursSection {
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #1976d2;
+}
+
+/* Filter Section */
+.filterContainer {
+  margin-top: 3rem;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1500px;
   padding: 0 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Component bazlı loading ve error stilleri */
+.mobileFilterBox {
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+/* Tours Grid */
+.toursGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  padding: 0;
+}
+
+.tourCardWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Component States */
 .componentLoading {
   display: flex;
   justify-content: center;
@@ -52,101 +112,6 @@
   padding: 0 1rem;
 }
 
-/* Tours Section */
-.toursSection {
-  padding: 4rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Section Title */
-.sectionTitle {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-}
-
-.sectionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: #1976d2;
-}
-
-/* Filter Container */
-.filterContainer {
-  margin-top: 3rem;
-  width: 100%;
-  max-width: 1500px;
-  padding: 0 2rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Mobile Filter Box */
-.mobileFilterBox {
-  width: 100%;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
-
-/* Tours Grid */
-.toursGrid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-  padding: 0;
-}
-
-/* Tour Card Wrapper */
-.tourCardWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-/* Mobile Slider Container */
-.mobileSliderContainer {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* Slider içindeki kartlar arası boşluk */
-.mobileSliderContainer :global(.slick-slide) {
-  padding: 0 10px;
-}
-
-/* Slider liste container'ı için negatif margin düzeltmesi */
-.mobileSliderContainer :global(.slick-list) {
-  margin: 0 -10px;
-}
-
-/* Slider Dots */
-.mobileSliderContainer :global(.slick-dots) {
-  bottom: -35px;
-}
-
-.mobileSliderContainer :global(.slick-dots li button:before) {
-  font-size: 8px;
-  color: #1976d2;
-}
-
-.mobileSliderContainer :global(.slick-dots li.slick-active button:before) {
-  color: #1976d2;
-}
-
-/* No Results Message */
 .noResults {
   display: flex;
   flex-direction: column;
@@ -174,12 +139,45 @@
   line-height: 1.5;
 }
 
+/* Mobile Slider */
+.mobileSliderContainer {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.mobileSliderContainer :global(.slick-slide) {
+  padding: 0 10px;
+}
+
+.mobileSliderContainer :global(.slick-list) {
+  margin: 0 -10px;
+}
+
+.mobileSliderContainer :global(.slick-dots) {
+  bottom: -35px;
+}
+
+.mobileSliderContainer :global(.slick-dots li button:before) {
+  font-size: 8px;
+  color: #1976d2;
+}
+
+.mobileSliderContainer :global(.slick-dots li.slick-active button:before) {
+  color: #1976d2;
+}
+
+.mobileSliderContainer {
+  margin-bottom: 2.5rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .toursSection {
     padding: 3rem 1rem;
   }
-  
+
   .sectionTitle {
     font-size: 2.25rem;
     margin-bottom: 2.5rem;
@@ -191,6 +189,10 @@
 }
 
 @media (max-width: 768px) {
+  .homeContainer {
+    padding: 0 1rem;
+  }
+
   .toursSection {
     padding: 2rem 0.5rem;
   }
@@ -209,6 +211,10 @@
     font-size: 2.25rem;
   }
 
+  .mobileFilterBox {
+    padding: 1rem;
+  }
+
   .noResults {
     min-height: 150px;
     padding: 1.5rem;
@@ -221,10 +227,6 @@
   
   .noResultsText {
     font-size: 0.875rem;
-  }
-
-  .mobileFilterBox {
-    padding: 1rem;
   }
 }
 
@@ -239,7 +241,7 @@
   }
 
   .bannerTitle {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 
   .filterContainer {

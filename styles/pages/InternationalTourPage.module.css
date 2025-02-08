@@ -51,11 +51,13 @@
 .regionCard {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
   overflow: hidden;
   border-radius: 0.625rem;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .regionCard:hover {
@@ -68,8 +70,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
   background-position: center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .regionOverlay {
@@ -78,11 +81,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(44, 62, 80, 0.5);
-  border-radius: 0.625rem;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 0.625rem;
 }
 
 .regionName {
@@ -90,6 +93,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   text-align: center;
+  padding: 0 1rem;
 }
 
 /* Component Bazlı Stiller */
@@ -162,13 +166,26 @@
 }
 
 /* Responsive Design */
+
+@media (max-width: 1200px) {
+
+  .sectionTitle {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bannerTitle {
+    font-size: 2.75rem;
+  }
+}
+
 @media (max-width: 768px) {
   .homeContainer {
     padding: 0 1rem;
   }
 
   .bannerTitle {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .noResults {

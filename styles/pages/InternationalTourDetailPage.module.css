@@ -295,54 +295,43 @@
 /* Görsel Kartı */
 .imageCard {
   position: relative;
+  width: 100%;
+  padding-top: 66.67%;
+  cursor: pointer;
   border-radius: 8px;
   overflow: hidden;
-  height: 200px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .imageCard:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
-.imageCard img {
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-.imageCaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  padding: 0.5rem;
-  text-align: center;
+.cardImage {
+  transition: transform 0.3s ease;
 }
 
-/* Modal Stilleri */
+/* Modal Styles */
 .imageModal {
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
 .modalContent {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
-  background: white;
-  border-radius: 8px;
-  outline: none;
-}
-
-.modalImage {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
+  background-color: transparent;
 }
 
 .closeButton {
@@ -353,15 +342,11 @@
   z-index: 1;
 }
 
-.modalCaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 1rem;
-  text-align: center;
+.modalImage {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
 }
 
 /* Responsive Tasarım */
@@ -459,6 +444,19 @@
     position: static;
     top: auto;
   }
+
+  .errorContainer {
+    padding: 1rem;
+    min-height: 300px;
+  }
+
+  .errorContent {
+    padding: 1rem;
+  }
+
+  .errorContent .contentBox {
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -501,35 +499,54 @@
   .contentBox,
   .stickyBox {
     padding: 0.8rem;
-  }
-
-  .contentBox,
-  .stickyBox {
     border-radius: 12px;
     margin: 0.5rem 0;
     background-color: #ffffff;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   }
-} 
+}
 
-.loadingContainer {
+/* Error Container */
+.errorContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 60vh;
-  width: 100%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1000;
+  align-items: center;
+  min-height: 400px;
   padding: 2rem;
 }
 
-@media (max-width: 768px) {
-  .loadingContainer {
-    padding: 1rem;
-  }
-} 
+.errorContent {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.errorContent .contentBox {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.errorContent .sectionTitle {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* No Results */
+.noResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}

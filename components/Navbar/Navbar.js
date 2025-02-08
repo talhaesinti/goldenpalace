@@ -15,7 +15,7 @@ const menuItems = [
   { id: 5, title: 'İletişim', url: '/iletisim' },
 ];
 
-const WHATSAPP_NUMBER = "905555555555";
+const WHATSAPP_NUMBER = "905060461212";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);

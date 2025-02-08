@@ -1,0 +1,101 @@
+/* Banner ve genel sayfa düzeni */
+.internationalTourContainer {
+  margin-top: 0px;
+}
+
+.bannerContainer {
+  position: relative;
+  margin-top: 70px; /* Navbar'ın yüksekliği */
+}
+
+.bannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 62, 80, 0.5); /* Opaklık ve renk */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerTitle {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .bannerTitle {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerTitle {
+    font-size: 2rem;
+  }
+}
+
+/* İçerik ve tabların yerleşimi */
+.gridContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Grid container'ı merkezde hizala */
+  padding: 20px 0;
+}
+
+.tabsContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Tab içeriği ve alt elemanlar için stiller */
+.tabContent {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #2c3e50;
+  padding: 20px;
+}
+
+.tabContent p {
+  margin-bottom: 1rem;
+}
+
+.tabContent ul {
+  margin-left: 1.5rem;
+  list-style: disc;
+}
+
+.tabContent li {
+  margin-bottom: 0.5rem;
+}
+
+/* Aktif tabın başlığı, metnin sol üst kısmında görünecek */
+.activeTabHeading {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-align: left;
+}
+
+/* Mobil görünümde tab bar ve içerik için ek stiller */
+@media (max-width: 768px) {
+  .tabsContainer {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    overflow-x: auto;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  /* Eğer tab içeriğiyle ilgili de taşma sorunu oluyorsa */
+  .tabContent {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+} 

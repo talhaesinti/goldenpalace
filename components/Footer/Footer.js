@@ -2,6 +2,8 @@
 
 import styles from './CustomFooter.module.css'; // CSS stil dosyasını import et
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -11,20 +13,20 @@ const Footer = () => {
         {/* İletişim Bölümü */}
         <div className={`${styles.footerSection} ${styles.rightCizgi}`}>
           <h3>İletişim</h3>
-          <p>Adres: Elmalıkent Mah. Elmalıkent Cad. No:4 B Blok Kat:3 34764 Ümraniye / İSTANBUL</p>
-          <p>Email: <a href="mailto:info@goldenpalace.com">info@goldenpalace.com</a></p>
-          <p>Telefon: +90 216 474 08 60</p>
+          <p>Adres: Aziz Mahmud Hüdayi Mahallesi, Tepsi Fırını Sokağı No: 13/18 Çakmak İş Hanı, Üsküdar/İstanbul</p>
+          <p>Email: <a href="mailto:goldencastle.tr@gmail.com">goldencastle.tr@gmail.com</a></p>
+          <p>Telefon: +90 506 046 12 12</p>
         </div>
 
         {/* Hızlı Linkler */}
         <div className={`${styles.footerSection} ${styles.rightCizgi}`}>
           <h3>Hızlı Linkler</h3>
           <ul>
-            <li><a href="/">Anasayfa</a></li>
-            <li><a href="/yurtici">Yurt İçi Turlar</a></li>
-            <li><a href="/yurtdisi">Yurt Dışı Turlar</a></li>
-            <li><a href="/iletisim">İletişim</a></li>
-            <li><a href="/hakkimizda">Hakkımızda</a></li>
+            <li><Link href="/">Anasayfa</Link></li>
+            <li><Link href="/yurtici">Yurt İçi Turlar</Link></li>
+            <li><Link href="/yurtdisi">Yurt Dışı Turlar</Link></li>
+            <li><Link href="/iletisim">İletişim</Link></li>
+            <li><Link href="/hakkimizda">Hakkımızda</Link></li>
           </ul>
         </div>
 
@@ -34,7 +36,13 @@ const Footer = () => {
           <div className={styles.socialIcons}>
             {/* Statik Sosyal Medya İkonları */}
             <a href="https://www.instagram.com/golden.castle.travel/" target="_blank" rel="noopener noreferrer">
-              <img src="/instagram.png" alt="Instagram Icon" className={styles.icon} />
+              <Image 
+                src="/instagram.png" 
+                alt="Instagram Icon" 
+                width={32} 
+                height={32}
+                className={styles.icon} 
+              />
             </a>
           </div>
         </div>

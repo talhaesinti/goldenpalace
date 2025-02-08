@@ -1,0 +1,21 @@
+# *
+User-agent: *
+Allow: /
+Allow: /yurtici
+Allow: /yurtdisi
+Allow: /hakkimizda
+Allow: /iletisim
+Allow: /images
+Allow: /sitemap.xml
+Disallow: /api/*
+Disallow: /_next/*
+Disallow: /404
+Disallow: /500
+Disallow: /*?*
+Disallow: /*/[*
+
+# Host
+Host: http://localhost:3000
+
+# Sitemaps
+Sitemap: http://localhost:3000/sitemap.xml
