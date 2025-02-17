@@ -1,19 +1,16 @@
 /** @type {import('next').NextConfig} */
 
-
-const nextConfig = ({
-  // React Strict Mode
+const nextConfig = {
+  // React Strict Mode (prod’da true veya false tercihinize bağlı)
   reactStrictMode: true,
 
-  // Görsel optimizasyonu için pattern izni
+  // Görsel optimizasyonu için sadece prod ayarları
   images: {
-    domains: ['127.0.0.1', 'localhost', 'api.goldencastletravel.com'], 
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '8000',
-        pathname: '/media/**',
+        protocol: 'https',
+        hostname: 'api.goldencastletravel.com',
+        pathname: '/api/**',
       },
       {
         protocol: 'https',
@@ -22,63 +19,58 @@ const nextConfig = ({
       },
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'fakeimg.pl',
+        pathname: '/**',
       }
     ],
   },
 
   // Production build ayarları
-  output: 'standalone',  // Docker için optimize edilmiş build
-  poweredByHeader: false,  // X-Powered-By header'ı kaldır
-  compress: true,  // Gzip sıkıştırma
+  output: 'standalone',
+  poweredByHeader: false,
+  compress: true,
 
-  // Güvenlik ve performans headers
+  // Güvenlik headers – Google Maps embed ve sitenizin başka sitelerde görünmesine izin verecek şekilde düzenlendi
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY'  // Clickjacking koruması
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'  // MIME type sniffing koruması
-          },
-          {
+          // X-Frame-Options: 'DENY' ve frame-ancestors direktifi kaldırıldı
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { 
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https://api.goldencastletravel.com;"
-          },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
-          },
-          ...(process.env.NODE_ENV === 'production' 
-            ? [
-                {
-                  key: 'Strict-Transport-Security',
-                  value: 'max-age=31536000; includeSubDomains'
-                },
-                {
-                  key: 'Permissions-Policy',
-                  value: 'camera=(), microphone=(), geolocation=()'
-                }
-              ] 
-            : [])
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googleapis.com https://*.gstatic.com;
+              style-src 'self' 'unsafe-inline' https://*.googleapis.com;
+              img-src 'self' data: https: http: blob:;
+              font-src 'self' data: https://*.gstatic.com;
+              connect-src 'self' https://api.goldencastletravel.com ws: wss:;
+              frame-src https://www.google.com https://*.google.com;
+              media-src 'self';
+              object-src 'none';
+              base-uri 'self';
+              form-action 'self';
+            `.replace(/\s+/g, ' ').trim(),
+          }
         ],
       },
-      {
-        source: '/api/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-store'
-          }
-        ]
-      }
-    ]
+      // Production'a özel ek güvenlik header'ları
+      ...(process.env.NODE_ENV === 'production'
+        ? [
+            {
+              source: '/:path*',
+              headers: [
+                { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
+                { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), fullscreen=()' },
+              ],
+            },
+          ]
+        : []),
+    ];
   },
-});
+};
 
 module.exports = nextConfig;

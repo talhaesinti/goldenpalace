@@ -1,53 +1,80 @@
-import HomeClient from "./HomeClient";
-import internationalToursAPI from "./api/internationalToursAPI";
-import bannersAPI from "./api/bannersAPI";
-import regionsAPI from "./api/regionsAPI";
+// app/home/page.js
 
-const HomePage = async () => {
-  let state = {
-    banners: [],
-    tours: null,
-    regions: null,
-    toursError: null,
-    regionsError: null
-  };
+import HomeClient from './HomeClient';
 
+async function getHomeData() {
   try {
-    // Banner'ları ayrı çekelim çünkü hata olsa bile göstermek istiyoruz
-    const bannersResponse = await bannersAPI.getBanners({ type: "home", is_active: "true" });
-    state.banners = bannersResponse.data;
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const [bannersResponse, toursResponse, regionsResponse] = await Promise.all([
+      fetch(`${apiUrl}/api/banners?type=home&is_active=true`, {
+        next: { revalidate: 86400 } // 24 saat cache
+      }),
+      fetch(`${apiUrl}/api/international-tours?is_active=true`, {
+        next: { revalidate: 3600 } // 1 saat cache
+      }),
+      fetch(`${apiUrl}/api/regions?is_active=true`, {
+        next: { revalidate: 43200 } // 12 saat cache
+      })
+    ]);
 
-    // Turlar ve bölgeleri paralel çekelim
-    try {
-      const toursResponse = await internationalToursAPI.getInternationalTours({ is_active: true });
-      state.tours = toursResponse.data.slice(0, 8);
-    } catch (error) {
-      console.error("Turlar yüklenirken hata:", error);
-      state.toursError = "Turlar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
+    // Hata kontrolü ve JSON parse işlemleri
+    let banners = [];
+    let tours = [];
+    let regions = [];
+    const errors = {
+      bannersError: null,
+      toursError: null,
+      regionsError: null,
+    };
+
+    if (!bannersResponse.ok) {
+      errors.bannersError = `Banner API Hatası: ${bannersResponse.status}`;
+    } else {
+      banners = await bannersResponse.json();
     }
 
-    try {
-      const regionsResponse = await regionsAPI.getRegions({ is_active: true });
-      state.regions = regionsResponse.data;
-    } catch (error) {
-      console.error("Bölgeler yüklenirken hata:", error);
-      state.regionsError = "Bölgeler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
+    if (!toursResponse.ok) {
+      errors.toursError = `Turlar API Hatası: ${toursResponse.status}`;
+    } else {
+      const toursData = await toursResponse.json();
+      tours = toursData.slice(0, 8); // Sadece ilk 8 turu alıyoruz
     }
+
+    if (!regionsResponse.ok) {
+      errors.regionsError = `Bölgeler API Hatası: ${regionsResponse.status}`;
+    } else {
+      regions = await regionsResponse.json();
+    }
+
+    return {
+      banners,
+      tours,
+      regions,
+      errors
+    };
 
   } catch (error) {
-    console.error("Banner yüklenirken hata:", error);
-    // Banner hatası olsa bile boş array ile devam ediyoruz
+    return {
+      banners: [],
+      tours: [],
+      regions: [],
+      errors: {
+        message: "Veriler yüklenirken beklenmeyen bir hata oluştu."
+      }
+    };
   }
+}
+
+export default async function HomePage() {
+  const data = await getHomeData();
 
   return (
     <HomeClient 
-      initialBanners={state.banners}
-      initialTours={state.tours}
-      initialRegions={state.regions}
-      toursError={state.toursError}
-      regionsError={state.regionsError}
+      initialBanners={data.banners}
+      initialTours={data.tours}
+      initialRegions={data.regions}
+      toursError={data.errors.toursError}
+      regionsError={data.errors.regionsError}
     />
   );
-};
-
-export default HomePage;
+}

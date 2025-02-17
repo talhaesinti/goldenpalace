@@ -4,15 +4,15 @@ import React from "react";
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ClientContent } from './ClientContent';
 
-const TourDetailClient = ({ initialTourData, error }) => {
+const ContactDetailClient = ({ initialData, error }) => {
   return (
     <ErrorBoundary>
       <ClientContent 
-        initialTourData={initialTourData}
+        initialData={initialData}
         error={error}
       />
     </ErrorBoundary>
   );
 };
 
-export default TourDetailClient; 
+export default ContactDetailClient; 

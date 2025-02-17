@@ -1,6 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.goldencastletravel.com/api";
+// API_URL sonunda /api olmadan gelecek
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.goldencastletravel.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://goldencastletravel.com";
 
 // API çağrıları için yardımcı fonksiyon
 async function fetchAPI(endpoint, params = {}) {
@@ -10,7 +12,7 @@ async function fetchAPI(endpoint, params = {}) {
       'Content-Type': 'application/json',
     };
 
-    // API URL'de zaten /api var, tekrar eklemeye gerek yok
+    // API endpoint'i düzenleme - /api/ prefix'i zaten var
     const response = await fetch(`${API_URL}${endpoint}?${queryString}`, {
       method: 'GET',
       headers,
@@ -18,11 +20,12 @@ async function fetchAPI(endpoint, params = {}) {
     });
 
     if (!response.ok) {
-      throw new Error(`API yanıt vermedi: ${response.status}`);
+      console.error(`API Hatası (${endpoint}): ${response.status}`);
+      return { data: [] };
     }
 
     const data = await response.json();
-    return { data }; // API yanıtını data property'si içinde döndürüyoruz
+    return { data };
   } catch (error) {
     console.error(`API Hatası (${endpoint}):`, error);
     return { data: [] };
@@ -30,7 +33,7 @@ async function fetchAPI(endpoint, params = {}) {
 }
 
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://goldencastletravel.com",
+  siteUrl: SITE_URL,
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: 'daily',
@@ -38,7 +41,7 @@ module.exports = {
   exclude: ['/api/*', '/_next/*', '/404', '/500'],
   robotsTxtOptions: {
     policies: [
-      { 
+      {
         userAgent: "*",
         allow: ["/", "/yurtici", "/yurtdisi", "/hakkimizda", "/iletisim", "/images", "/sitemap.xml"],
         disallow: [
@@ -52,22 +55,21 @@ module.exports = {
       }
     ],
     additionalSitemaps: [
-      `${process.env.NEXT_PUBLIC_SITE_URL || "https://goldencastletravel.com"}/sitemap.xml`
+      `${SITE_URL}/sitemap.xml`
     ],
   },
   // Dinamik sayfaları oluştur
   additionalPaths: async (config) => {
     const result = [];
-    const siteUrl = config.siteUrl;
 
     try {
       console.log('🔄 API çağrıları başlatılıyor...');
       
-      // Tüm API çağrılarını paralel yap
+      // Tüm API çağrılarını paralel yap - /api/ prefix'i ile
       const [domesticTours, regions, internationalTours] = await Promise.all([
-        fetchAPI('/domestic-tours/', { is_active: true }),
-        fetchAPI('/regions/', { is_active: true }),
-        fetchAPI('/international-tours/', { is_active: true })
+        fetchAPI('/api/domestic-tours/', { is_active: true }),
+        fetchAPI('/api/regions/', { is_active: true }),
+        fetchAPI('/api/international-tours/', { is_active: true })
       ]);
 
       console.log(`✅ API yanıtları alındı:
@@ -81,7 +83,7 @@ module.exports = {
         for (const tour of domesticTours.data) {
           if (tour.slug) {
             result.push({
-              loc: `${siteUrl}/yurtici/${tour.slug}`,
+              loc: `${SITE_URL}/yurtici/${tour.slug}`,
               lastmod: tour.updated_at || new Date().toISOString(),
               changefreq: 'weekly',
               priority: 0.7
@@ -95,7 +97,7 @@ module.exports = {
         for (const region of regions.data) {
           if (region.slug) {
             result.push({
-              loc: `${siteUrl}/yurtdisi/${region.slug}`,
+              loc: `${SITE_URL}/yurtdisi/${region.slug}`,
               lastmod: new Date().toISOString(),
               changefreq: 'weekly',
               priority: 0.7
@@ -109,7 +111,7 @@ module.exports = {
         for (const tour of internationalTours.data) {
           if (tour.region?.slug && tour.slug) {
             result.push({
-              loc: `${siteUrl}/yurtdisi/${tour.region.slug}/${tour.slug}`,
+              loc: `${SITE_URL}/yurtdisi/${tour.region.slug}/${tour.slug}`,
               lastmod: tour.updated_at || new Date().toISOString(),
               changefreq: 'weekly',
               priority: 0.7

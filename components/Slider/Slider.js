@@ -2,23 +2,37 @@
 
 import dynamic from "next/dynamic";
 import { useState, useCallback, memo } from "react";
-import Image from 'next/image';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styles from './Slider.module.css';
+import Image from "next/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styles from "./Slider.module.css";
 
-const Slider = dynamic(() => import('react-slick'), {
+const Slider = dynamic(() => import("react-slick"), {
   ssr: false,
-  loading: () => <div className={styles.placeholder}>Yükleniyor...</div>
+  loading: () => <div className={styles.placeholder}>Yükleniyor...</div>,
 });
 
-const CustomSlider = memo(({ banners }) => {
+// **Görsel URL'lerini optimize eden yardımcı fonksiyon**
+const getOptimizedImageUrl = (imageUrl) => {
+  if (!imageUrl) return "https://fakeimg.pl/600x400?text=+";
+  
+  try {
+    const url = new URL(imageUrl);
+    return url.toString();
+  } catch {
+    return imageUrl;
+  }
+};
+
+const CustomSlider = memo(({ banners = [] }) => {
   const [loadedImages, setLoadedImages] = useState({});
 
+  // **Görsel yüklendiğinde state güncelleme**
   const handleImageLoad = useCallback((index) => {
-    setLoadedImages(prev => ({ ...prev, [index]: true }));
+    setLoadedImages((prev) => ({ ...prev, [index]: true }));
   }, []);
 
+  // **Slick Slider ayarları**
   const settings = {
     dots: true,
     infinite: banners.length > 1,
@@ -32,6 +46,7 @@ const CustomSlider = memo(({ banners }) => {
     adaptiveHeight: true,
   };
 
+  // **Eğer banner verisi yoksa boş ekran göster**
   if (!banners?.length) {
     return (
       <div className={styles.sliderContainer}>
@@ -51,17 +66,12 @@ const CustomSlider = memo(({ banners }) => {
             <div className={styles.imageWrapper}>
               {banner?.image && (
                 <Image
-                  src={banner.image}
+                  src={getOptimizedImageUrl(banner.image)}
                   alt={banner.title || `Banner ${index + 1}`}
-                  width={1920}
-                  height={1080}
+                  fill
                   priority={index === 0}
-                  quality={75}
-                  style={{
-                    objectFit: 'cover',
-                    width: '100%',
-                    height: '100%'
-                  }}
+                  quality={80}
+                  style={{ objectFit: "cover" }}
                   onLoad={() => handleImageLoad(index)}
                 />
               )}
@@ -73,6 +83,6 @@ const CustomSlider = memo(({ banners }) => {
   );
 });
 
-CustomSlider.displayName = 'CustomSlider';
+CustomSlider.displayName = "CustomSlider";
 
 export default CustomSlider;

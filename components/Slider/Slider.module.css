@@ -6,6 +6,7 @@
   background-color: #f0f0f0;
   transform: translateZ(0);
   will-change: transform;
+  contain: content;
 }
 
 .slide {
@@ -13,12 +14,14 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  contain: content;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
   height: 60vh;
+  contain: content;
 }
 
 .placeholder {
@@ -27,7 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: transparent;
   color: #666;
   font-size: 1.2rem;
   position: absolute;
@@ -40,7 +43,11 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   transform: translateZ(0);
-  will-change: opacity;
+  will-change: opacity, transform;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  contain: paint;
 }
 
 .loaded {

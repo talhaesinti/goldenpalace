@@ -71,6 +71,22 @@
   margin-right: auto;
 }
 
+/* Mobile Filter Overlay */
+.mobileFilterOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Arka plan karartması */
+  z-index: 1200;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 70px; /* Üstten boşluk (örneğin, header yüksekliğine göre ayarlayın) */
+}
+
+
 .mobileFilterBox {
   width: 100%;
   padding: 1.5rem;

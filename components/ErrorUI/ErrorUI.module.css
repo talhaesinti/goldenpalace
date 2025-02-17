@@ -1,0 +1,92 @@
+.errorContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 3rem auto;
+  max-width: 600px;
+  text-align: center;
+  background: var(--background-paper, #fff);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  transform: scale(1);
+  -webkit-tap-highlight-color: transparent; /* iOS tap highlight'ı kaldır */
+  touch-action: manipulation; /* Mobilde daha iyi touch handling */
+}
+
+/* Tıklama/dokunma animasyonu */
+.errorContent:active,
+.errorContent:hover:active {
+  transform: scale(0.95);
+}
+
+/* Touch cihazlar için */
+@media (hover: none) {
+  .errorContent:hover {
+    transform: scale(1); /* Hover efektini mobilde kaldır */
+  }
+  
+  .errorContent:active {
+    transform: scale(0.95); /* Touch'da scale efektini koru */
+  }
+}
+
+/* Loading durumu */
+.errorContent.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Diğer stiller */
+.errorContent h2 {
+  color: var(--error-color, #d32f2f);
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+}
+
+.errorContent p {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary, #666);
+  font-size: clamp(1rem, 3vw, 1.125rem);
+  line-height: 1.6;
+  max-width: 80%;
+}
+
+.retryButton {
+  background-color: #d32f2f !important;
+  color: white !important;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  min-width: 150px;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+.retryButton:hover {
+  background-color: #b71c1c !important;
+}
+
+/* Container stili */
+.errorContainer {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--background-default, #f5f5f5);
+}
+
+/* Animasyon */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

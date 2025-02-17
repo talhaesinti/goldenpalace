@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const menuItems = [
   { id: 1, title: 'Ana Sayfa', url: '/' },
@@ -19,6 +20,7 @@ const WHATSAPP_NUMBER = "905060461212";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const pathname = usePathname();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -30,6 +32,11 @@ const Navbar = () => {
 
   const handleWhatsAppClick = () => {
     window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
+  };
+
+  // Aktif kontrolü için yardımcı fonksiyon
+  const isActive = (url) => {
+    return url === '/' ? pathname === '/' : pathname.startsWith(url);
   };
 
   return (
@@ -61,7 +68,18 @@ const Navbar = () => {
         {/* Sol: Logo */}
         <Link href="/" passHref>
           <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-            <Image src="/logo.png" alt="Logo" width={120} height={60} />
+            <Image 
+              src="/logo.png" 
+              alt="Logo" 
+              width={128}
+              height={67}
+              style={{
+                width: 'auto',
+                height: 'auto',
+                maxHeight: '60px',
+                maxWidth: '120px'
+              }}
+            />
           </Box>
         </Link>
 
@@ -81,7 +99,7 @@ const Navbar = () => {
                 fontWeight: 'bold', 
                 fontSize: '1rem',
                 textTransform: 'none',
-                color: 'black',
+                color: isActive(item.url) ? '#0056b3' : 'black',
               }}
             >
               {item.title}
@@ -100,6 +118,7 @@ const Navbar = () => {
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <IconButton
               onClick={handleWhatsAppClick}
+              aria-label="WhatsApp ile iletişime geç"
               sx={{
                 color: '#25D366',
                 '&:hover': {
@@ -118,6 +137,7 @@ const Navbar = () => {
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: '10px', alignItems: 'center' }}>
             <IconButton
               onClick={handleWhatsAppClick}
+              aria-label="WhatsApp ile iletişime geç"
               sx={{
                 color: '#25D366',
                 '& .MuiSvgIcon-root': {
@@ -130,7 +150,7 @@ const Navbar = () => {
             <IconButton 
               edge="end" 
               color="inherit" 
-              aria-label="menu" 
+              aria-label="Ana menüyü aç"
               onClick={handleMenuOpen}
               sx={{ 
                 color: 'black',
@@ -164,7 +184,7 @@ const Navbar = () => {
                 <Link href={item.url} passHref>
                   <Button 
                     sx={{ 
-                      color: 'black',
+                      color: isActive(item.url) ? '#0056b3' : 'black',
                       textTransform: 'none',
                       width: '100%',
                       justifyContent: 'flex-start',

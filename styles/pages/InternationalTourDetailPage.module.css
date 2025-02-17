@@ -292,6 +292,13 @@
   font-weight: 600;
 }
 
+.priceNote {
+  font-size: 1.25rem;
+  font-weight: normal;
+  color: #666;
+  margin-left: 4px;
+}
+
 /* Görsel Kartı */
 .imageCard {
   position: relative;

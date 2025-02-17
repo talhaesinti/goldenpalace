@@ -2,6 +2,25 @@
 
 import Layout from '../layouts/Layout';
 import '../styles/globals.css';
+import { Roboto, Montserrat } from 'next/font/google';
+
+// Roboto font tanımlaması
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin', 'latin-ext'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
+
+// Montserrat font tanımlaması
+const montserrat = Montserrat({
+  weight: ['500', '600', '700'],
+  style: ['normal'],
+  subsets: ['latin', 'latin-ext'],
+  display: 'swap',
+  variable: '--font-montserrat',
+});
 
 export const viewport = {
   width: 'device-width',
@@ -79,7 +98,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      <body className="bg-[#f7f9fc] text-[#2c3e50]">
+      <head>
+        {/* Production API için preconnect */}
+        <link rel="preconnect" href="https://api.goldencastletravel.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://api.goldencastletravel.com" />
+        
+        {/* Ana site için preconnect */}
+        <link rel="preconnect" href="https://goldencastletravel.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://goldencastletravel.com" />
+      </head>
+      <body className={`${roboto.variable} ${montserrat.variable} bg-[#f7f9fc] text-[#2c3e50]`}>
         <Layout>
           {children}
         </Layout>

@@ -7,13 +7,18 @@
   box-sizing: border-box;
 }
 
+/* Font Display ayarı */
 html {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Temel body stili */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
   background-color: #f7f9fc;
   color: #333;
   line-height: 1.6;
@@ -21,14 +26,10 @@ body {
 }
 
 /* Başlıklar için stil */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Montserrat', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
   color: #ffffff;
+  font-weight: 600;
 }
 
 /* Bağlantı (Link) stili */
@@ -84,3 +85,19 @@ footer a:hover {
     margin: 15px 0;
   }
 }
+
+/* Font optimizasyonu için özel sınıflar */
+.font-roboto {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
+}
+
+/* Font ağırlıkları için yardımcı sınıflar */
+.font-light { font-weight: 300; }
+.font-regular { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }

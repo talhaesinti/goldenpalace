@@ -1,33 +1,58 @@
 import DomesticTourClient from './DomesticTourClient';
-import bannersAPI from "../api/bannersAPI";
-import domesticToursAPI from "../api/domesticToursAPI";
 
-async function DomesticTourPage() {
+async function getDomesticData() {
   try {
-    const [bannersResponse, toursResponse] = await Promise.all([
-      bannersAPI.getBanners({
-        type: "domestic",
-        is_active: "true",
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const [toursResponse, bannersResponse] = await Promise.all([
+      fetch(`${apiUrl}/api/domestic-tours`, {
+        next: { revalidate: 43200 } // 12 saat cache
       }),
-      domesticToursAPI.getDomesticTours({
-        is_active: true,
+      fetch(`${apiUrl}/api/banners?type=domestic&is_active=true`, {
+        next: { revalidate: 86400 } // 24 saat cache
       })
     ]);
 
-    return (
-      <DomesticTourClient 
-        initialBanners={bannersResponse.data} 
-        initialTours={toursResponse.data} 
-      />
-    );
+    if (!toursResponse.ok || !bannersResponse.ok) {
+      return {
+        tours: [],
+        banners: [],
+        errors: {
+          message: `API Hatası: ${toursResponse.status} - ${bannersResponse.status}`
+        }
+      };
+    }
+
+    const [tours, banners] = await Promise.all([
+      toursResponse.json(),
+      bannersResponse.json()
+    ]);
+
+    return {
+      tours,
+      banners,
+      errors: null
+    };
+
   } catch (error) {
-    console.error("Veri yüklenirken hata oluştu:", error);
-    return (
-      <DomesticTourClient 
-        error="Veriler yüklenirken bir hata oluştu. Lütfen sayfayı yenileyin."
-      />
-    );
+    return {
+      tours: [],
+      banners: [],
+      errors: {
+        message: "Veriler yüklenirken beklenmeyen bir hata oluştu."
+      }
+    };
   }
 }
 
-export default DomesticTourPage;
+export default async function DomesticTourPage() {
+  const data = await getDomesticData();
+
+  return (
+    <DomesticTourClient 
+      initialBanners={data.banners}
+      initialTours={data.tours}
+      serverError={data.errors}
+    />
+  );
+}
+
