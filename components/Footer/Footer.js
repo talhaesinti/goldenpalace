@@ -36,12 +36,14 @@ const Footer = () => {
           <div className={styles.socialIcons}>
             {/* Statik Sosyal Medya İkonları */}
             <a href="https://www.instagram.com/golden.castle.travel/" target="_blank" rel="noopener noreferrer">
-              <Image 
+              <img 
                 src="/instagram.png" 
                 alt="Instagram Icon" 
-                width={32} 
-                height={32}
-                className={styles.icon} 
+                style={{
+                  width: '32px',
+                  height: '32px'
+                }}
+                className={styles.icon}
               />
             </a>
           </div>

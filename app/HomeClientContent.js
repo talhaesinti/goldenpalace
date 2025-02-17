@@ -44,7 +44,7 @@ const HomeClientContent = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  // API endpoint’leri
+  // API endpoint'leri
   const bannersEndpoint = "/api/banners?type=home&is_active=true";
   const toursEndpoint = "/api/international-tours?is_active=true";
   const regionsEndpoint = "/api/regions?is_active=true";
@@ -147,7 +147,7 @@ const HomeClientContent = ({
             <Slider {...sliderSettings}>
               {tours.map((tour) => (
                 <div key={tour.id} className={styles.tourCardWrapper}>
-                  <div onClick={() => router.push(`/yurtici/${tour.slug}`)}>
+                  <div onClick={() => router.push(`/yurtdisi/${tour.region.slug}/${tour.slug}`)}>
                     <TourCard tour={{ ...tour, name: formatTitle(tour.name) }} />
                   </div>
                 </div>
@@ -160,7 +160,7 @@ const HomeClientContent = ({
               <div
                 key={tour.id}
                 className={styles.tourCardWrapper}
-                onClick={() => router.push(`/yurtici/${tour.slug}`)}
+                onClick={() => router.push(`/yurtdisi/${tour.region.slug}/${tour.slug}`)}
               >
                 <TourCard tour={{ ...tour, name: formatTitle(tour.name) }} />
               </div>
@@ -198,7 +198,7 @@ const HomeClientContent = ({
     }
     return (
       <>
-        <h2 className={styles.sectionTitle}>{formatTitle("Bölgeler")}</h2>
+
         <Grid container spacing={3} className={styles.gridContainer} justifyContent="center">
           {regions.map((region) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={region?.id}>

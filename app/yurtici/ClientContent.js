@@ -56,12 +56,12 @@ export function ClientContent({
   // Client tarafında verilerin başarılı şekilde geldiğini takip etmek için flag
   const [clientFetched, setClientFetched] = useState(false);
 
-  // Persistent hata state’leri
+  // Persistent hata state'leri
   const [persistentBannersError, setPersistentBannersError] = useState(null);
   const [persistentToursError, setPersistentToursError] = useState(null);
 
   // -----------------------------------------------------
-  // SWR API Çağrıları – fallbackData ile ve onError/onSuccess callback’leriyle
+  // SWR API Çağrıları – fallbackData ile ve onError/onSuccess callback'leriyle
   // -----------------------------------------------------
   const {
     data: bannersData,
@@ -237,7 +237,7 @@ export function ClientContent({
             <>
               <Box
                 textAlign="right"
-                sx={{ position: "relative", zIndex: 1100, mb: 1 }}
+                sx={{ position: "relative", zIndex: 1098, mb: 1 }}
               >
                 <Button
                   variant="outlined"

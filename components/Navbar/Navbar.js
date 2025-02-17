@@ -68,11 +68,9 @@ const Navbar = () => {
         {/* Sol: Logo */}
         <Link href="/" passHref>
           <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-            <Image 
+            <img 
               src="/logo.png" 
               alt="Logo" 
-              width={128}
-              height={67}
               style={{
                 width: 'auto',
                 height: 'auto',

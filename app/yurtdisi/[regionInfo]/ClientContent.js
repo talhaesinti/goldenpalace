@@ -52,7 +52,7 @@ export function ClientContent({
   // Client verisi geldi mi?
   const [clientFetched, setClientFetched] = useState(false);
 
-  // Endpoint’ler (SSR fallback için initialRegion kullanılıyor)
+  // Endpoint'ler (SSR fallback için initialRegion kullanılıyor)
   const regionEndpoint = initialRegion
     ? `/api/regions/${initialRegion.slug}`
     : null;
@@ -60,7 +60,7 @@ export function ClientContent({
     ? `/api/international-tours?region_slug=${initialRegion.slug}&is_active=true`
     : null;
 
-  // Persistent hata state’leri
+  // Persistent hata state'leri
   const [persistentRegionError, setPersistentRegionError] = useState(null);
   const [persistentToursError, setPersistentToursError] = useState(null);
   const [serverErrorState] = useState(serverError);
@@ -136,11 +136,10 @@ export function ClientContent({
 
   // Retry (Tekrar Dene)
   const handleRetry = useCallback(() => {
-    // Region ve tours verilerini revalidate etmek için her SWR’in kendi mutate’ini çağırıyoruz
+    // Region ve tours verilerini revalidate etmek için her SWR'in kendi mutate'ini çağırıyoruz
     mutateRegion(undefined, { revalidate: true });
     mutateTours(undefined, { revalidate: true });
   }, [mutateRegion, mutateTours]);
-
 
   // Tour kartı tıklama fonksiyonu
   const handleTourClick = useCallback(
@@ -240,7 +239,9 @@ export function ClientContent({
       {/* Banner Section */}
       <div className={styles.bannerContainer}>
         <CustomSlider
-          banners={[{ image: normalizedRegion?.thumbnail || initialRegion?.thumbnail }]}
+          banners={[
+            { image: normalizedRegion?.thumbnail || initialRegion?.thumbnail },
+          ]}
         />
         <div className={styles.bannerOverlay}>
           <h1 className={styles.bannerTitle}>
@@ -267,10 +268,22 @@ export function ClientContent({
         </Box>
       ) : (
         <div className={styles.homeContainer}>
+          {/* Başlık Bölümü: Artık en üstte */}
+          <h2 className={styles.sectionTitle}>
+            {formatTitle(
+              `${normalizedRegion?.name || initialRegion?.name || "Bölge"} Turları`
+            )}
+          </h2>
+
           {/* Filter Section */}
           <Box className={styles.filterContainer}>
             {!isMobile ? (
-              <Grid container spacing={2} className={styles.filterGrid} justifyContent="center">
+              <Grid
+                container
+                spacing={2}
+                className={styles.filterGrid}
+                justifyContent="center"
+              >
                 <Grid item xs={12} sm={6} md={3}>
                   <TextField
                     label="Tur Ara"
@@ -307,7 +320,9 @@ export function ClientContent({
                     type="number"
                     fullWidth
                     value={priceRange[0]}
-                    onChange={(e) => setPriceRange([e.target.value, priceRange[1]])}
+                    onChange={(e) =>
+                      setPriceRange([e.target.value, priceRange[1]])
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
@@ -317,7 +332,9 @@ export function ClientContent({
                     type="number"
                     fullWidth
                     value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], e.target.value])}
+                    onChange={(e) =>
+                      setPriceRange([priceRange[0], e.target.value])
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
@@ -350,7 +367,10 @@ export function ClientContent({
               </Grid>
             ) : (
               <>
-                <Box textAlign="right" sx={{ position: "relative", zIndex: 1100, mb: 1 }}>
+                <Box
+                  textAlign="right"
+                  sx={{ position: "relative", zIndex: 1098, mb: 1 }}
+                >
                   <Button
                     variant="outlined"
                     startIcon={<FilterListIcon />}
@@ -399,7 +419,9 @@ export function ClientContent({
                             type="number"
                             fullWidth
                             value={priceRange[0]}
-                            onChange={(e) => setPriceRange([e.target.value, priceRange[1]])}
+                            onChange={(e) =>
+                              setPriceRange([e.target.value, priceRange[1]])
+                            }
                           />
                         </Grid>
                         <Grid item xs={12}>
@@ -409,7 +431,9 @@ export function ClientContent({
                             type="number"
                             fullWidth
                             value={priceRange[1]}
-                            onChange={(e) => setPriceRange([priceRange[0], e.target.value])}
+                            onChange={(e) =>
+                              setPriceRange([priceRange[0], e.target.value])
+                            }
                           />
                         </Grid>
                         <Grid item xs={12}>
@@ -456,9 +480,6 @@ export function ClientContent({
 
           {/* Tours Section */}
           <section className={styles.toursSection}>
-            <h2 className={styles.sectionTitle}>
-              {formatTitle(`${normalizedRegion?.name || initialRegion?.name || "Bölge"} Turları`)}
-            </h2>
             {filteredTours.length === 0 ? (
               <div className={styles.noResults}>
                 <h3 className={styles.noResultsTitle}>
